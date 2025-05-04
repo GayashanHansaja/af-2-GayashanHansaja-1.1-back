@@ -19,9 +19,11 @@ const app = express();
 app.use(express.json());
 
 // CORS configuration
+const clientUrl = process.env.CLIENT_URL ? process.env.CLIENT_URL.replace(/\/$/, '') : 'http://localhost:5173';
+
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
-  credentials: true // allows cookies to be sent with requests
+  origin: clientUrl,
+  credentials: true
 }));
 
 // Session middleware (instead of JWT)
